@@ -55,7 +55,7 @@ jobs:
         prefix=
         EOM
         pip3 install -t ./ -r ../../../src/py/requirements.txt --upgrade
-        cd $SHELL_FOLDER/rdm/src
+        cd $DIR/rdm/src
         sed -i '' '/CONFIG-=app_bundle/d' rdm.pro
         qmake CONFIG-=debug CONFIG+=sdk_no_version_check
         make -s -j 8
