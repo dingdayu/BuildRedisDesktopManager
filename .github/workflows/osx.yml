@@ -38,8 +38,10 @@ jobs:
       run: |
         pwd
         git clone --depth 1 https://github.com/uglide/RedisDesktopManager.git rdm
-
-    - name: act
+        pwd
+        ls
+        
+    - name: File
       run: |   
         export PATH=/usr/local/opt/qt5/bin/:$PATH
         DIR=`pwd`
@@ -57,6 +59,13 @@ jobs:
         pip3 install -t ./ -r ../../../src/py/requirements.txt --upgrade
         cd $DIR/rdm/src
         sed -i '' '/CONFIG-=app_bundle/d' rdm.pro
+        pwd
+        ls
+
+    - name: build
+      run: |
+        pwd
+        ls
         qmake CONFIG-=debug CONFIG+=sdk_no_version_check
         make -s -j 8
 
