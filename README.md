@@ -1,0 +1,2 @@
+# BuildRedisDesktopManager
+Auto Build RedisDesktopManager
