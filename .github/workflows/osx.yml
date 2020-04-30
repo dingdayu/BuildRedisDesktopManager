@@ -43,9 +43,10 @@ jobs:
     - name: act
       run: |
         DIR=`pwd`
+        TAG="202001"
         cd $DIR/rdm/src/resources
         cp Info.plist.sample Info.plist
-        sed -i "s/0.0.0/$TAG/g" Info.plist
+        sed -i "" "s/0.0.0/$TAG/g" Info.plist
         mkdir -p $DIR/rdm/bin/osx/release
         cd $SHELL_FOLDER/rdm/bin/osx/release
         touch setup.cfg
