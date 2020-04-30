@@ -34,6 +34,7 @@ jobs:
         brew install qt5 > /dev/null
         brew install openssl > /dev/null
         export PATH=/usr/local/opt/qt5/bin/:$PATH
+        qmake -v
     
     - name: Git Clon
       run: |
@@ -42,7 +43,7 @@ jobs:
     - name: act
       run: |
         DIR=`pwd`
-        cd DIR/rdm/src/resources
+        cd $DIR/rdm/src/resources
         cp Info.plist.sample Info.plist
         sed -i "s/0.0.0/$TAG/g" Info.plist
         mkdir -p $DIR/rdm/bin/osx/release
@@ -52,12 +53,11 @@ jobs:
         [install]
         prefix=
         EOM
-
-
-    - name: build macos
-      run: |
-          qmake
-          make
+        pip3 install -t ./ -r ../../../src/py/requirements.txt --upgrade
+        cd $SHELL_FOLDER/rdm/src
+        sed -i '' '/CONFIG-=app_bundle/d' rdm.pro
+        qmake CONFIG-=debug CONFIG+=sdk_no_version_check
+        make -s -j 8
 
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
