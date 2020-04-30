@@ -34,14 +34,6 @@ jobs:
         brew install qt5 > /dev/null
         brew install openssl > /dev/null
         export PATH=/usr/local/opt/qt5/bin/:$PATH
-        qmake -v
-    
-    - name: Git Clon
-      run: |
-        git clone --depth 1 https://github.com/uglide/RedisDesktopManager.git rdm
-
-    - name: act
-      run: |
         DIR=`pwd`
         TAG="202001"
         cd $DIR/rdm/src/resources
@@ -57,9 +49,16 @@ jobs:
         pip3 install -t ./ -r ../../../src/py/requirements.txt --upgrade
         cd $DIR/rdm/src
         sed -i '' '/CONFIG-=app_bundle/d' rdm.pro
-        qmake -v
         qmake CONFIG-=debug CONFIG+=sdk_no_version_check
         make -s -j 8
+    
+    - name: Git Clon
+      run: |
+        git clone --depth 1 https://github.com/uglide/RedisDesktopManager.git rdm
+
+    - name: act
+      run: |
+
 
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
