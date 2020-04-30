@@ -20,8 +20,6 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest]
-        qt_ver: [5.12.6]
-        qt_arch: [clang_64]
     env:
       targetName: HelloActions-Qt
 
@@ -37,10 +35,9 @@ jobs:
         brew install openssl > /dev/null
         export PATH=/usr/local/opt/qt5/bin/:$PATH
     
-    - uses: actions/checkout@v2
-      with:
-        repository: 'https://github.com/uglide/RedisDesktopManager.git'
-        fetch-depth: 1
+    - name: Git Clon
+      run: |
+        git clone --depth 1 https://github.com/uglide/RedisDesktopManager.git
 
     - name: act
       run: |
