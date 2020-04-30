@@ -34,6 +34,7 @@ jobs:
         brew install qt5 > /dev/null
         brew install openssl > /dev/null
         export PATH=/usr/local/opt/qt5/bin/:$PATH
+        git clone --depth 1 https://github.com/uglide/RedisDesktopManager.git rdm
         DIR=`pwd`
         TAG="202001"
         cd $DIR/rdm/src/resources
@@ -51,10 +52,6 @@ jobs:
         sed -i '' '/CONFIG-=app_bundle/d' rdm.pro
         qmake CONFIG-=debug CONFIG+=sdk_no_version_check
         make -s -j 8
-    
-    - name: Git Clon
-      run: |
-        git clone --depth 1 https://github.com/uglide/RedisDesktopManager.git rdm
 
     - name: act
       run: |
