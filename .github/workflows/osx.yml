@@ -27,15 +27,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:   
+    - name: Setup Python
+      uses: actions/setup-python@v1.2.0
+      
     - name: Install Qt
-      uses: jurplel/install-qt-action@v2.0.0
-      with:
-        version: ${{ matrix.qt_ver }}
+      run: |
+        brew update > /dev/null
+        && brew install qt5 > /dev/null
+        && brew install openssl > /dev/null
+        && export PATH=/usr/local/opt/qt5/bin/:$PATH
     
     - uses: actions/checkout@v2
       with:
         repository: 'https://github.com/uglide/RedisDesktopManager.git'
         fetch-depth: 1
+
     - name: act
       run: |
         DIR=`pwd`
