@@ -38,7 +38,7 @@ jobs:
     
     - name: Git Clon
       run: |
-        git clone --depth 1 https://github.com/uglide/RedisDesktopManager.git
+        git clone --depth 1 https://github.com/uglide/RedisDesktopManager.git rdm
 
     - name: act
       run: |
