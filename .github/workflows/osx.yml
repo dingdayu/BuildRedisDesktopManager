@@ -48,7 +48,7 @@ jobs:
         cp Info.plist.sample Info.plist
         sed -i "" "s/0.0.0/$TAG/g" Info.plist
         mkdir -p $DIR/rdm/bin/osx/release
-        cd $SHELL_FOLDER/rdm/bin/osx/release
+        cd $DIR/rdm/bin/osx/release
         touch setup.cfg
         /bin/cat <<EOM >setup.cfg
         [install]
